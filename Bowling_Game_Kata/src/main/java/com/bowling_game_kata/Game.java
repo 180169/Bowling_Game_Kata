@@ -24,7 +24,10 @@ class Game {
         int score = 0;
         int frameIndex = 0;
         for ( int frame = 0; frame < NUMBER_OF_FRAMES; frame++ ) {
-            if ( checkIfSpare( frameIndex ) ) {
+            if ( rolls[frameIndex] == 10 ) {
+                score += 10 + rolls[frameIndex + 1] + rolls[frameIndex + 2];
+                frameIndex++;
+            } else if ( checkIfSpare( frameIndex ) ) {
                 score += SPARE_SCORE + rolls[frameIndex + 2];
                 frameIndex += 2;
             } else {
