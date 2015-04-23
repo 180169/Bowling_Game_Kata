@@ -17,24 +17,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
 public class BowlingGameTest {
 
     private final Game game = new Game();
+    private int expectedScore;
 
     @Test
     public void twentyShots_zeroHits() throws Exception {
-        int expectedScore = 0;
+        expectedScore = 0;
         hitNPinsInEachOfNRolls( 20, 0 );
         assertThat( game.score(), is( expectedScore ) );
     }
 
     @Test
     public void oneShot_oneKill() throws Exception {
-        int expectedScore = 20;
+        expectedScore = 20;
         hitNPinsInEachOfNRolls( 20, 1 );
         assertThat( game.score(), is( expectedScore ) );
     }
 
     @Test
     public void oneSpare_andZeroForRest_expectedScoreIs14() {
-        int expectedScore = 14;
+        expectedScore = 14;
         spareRoll();
         game.roll( 2 );
         hitNPinsInEachOfNRolls( 17, 0 );
@@ -43,7 +44,7 @@ public class BowlingGameTest {
 
     @Test
     public void oneStrike_andZeroForRest_expectedScoreIs26() {
-        int expectedScore = 26;
+        expectedScore = 26;
         strikeRoll();
         game.roll( 3 );
         game.roll( 5 );
@@ -53,7 +54,7 @@ public class BowlingGameTest {
 
     @Test
     public void tenStrikes_expectedScoreIs300() {
-        int expectedScore = 300;
+        expectedScore = 300;
         hitNPinsInEachOfNRolls( 12, 10 );
         assertThat( game.score(), is( expectedScore ) );
     }
