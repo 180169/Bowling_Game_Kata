@@ -51,6 +51,13 @@ public class BowlingGameTest {
         assertThat( game.score(), is( expectedScore ) );
     }
 
+    @Test
+    public void tenStrikes_expectedScoreIs300() {
+        int expectedScore = 300;
+        hitNPinsInEachOfNRolls( 12, 10 );
+        assertThat( game.score(), is( expectedScore ) );
+    }
+
     private void strikeRoll() {
         game.roll( 10 );
     }
