@@ -35,11 +35,15 @@ public class BowlingGameTest {
     @Test
     public void oneSpare_andZeroForRest_expectedScoreIs12() {
         int expectedScore = 14;
-        game.roll( 5 );
-        game.roll( 5 );
+        spareRoll();
         game.roll( 2 );
         hitNPinsInEachOfNRolls( 17, 0 );
         assertThat( game.score(), is( expectedScore ) );
+    }
+
+    private void spareRoll() {
+        game.roll( 5 );
+        game.roll( 5 );
     }
 
     private void hitNPinsInEachOfNRolls( int rolls, int hitsPerRoll ) {

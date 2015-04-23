@@ -11,6 +11,8 @@ package com.bowling_game_kata;
  */
 class Game {
 
+    private static final int NUMBER_OF_FRAMES = 10;
+    private static final int SPARE_SCORE = 10;
     private int rolls[] = new int[21];
     private int currentRoll = 0;
 
@@ -21,9 +23,9 @@ class Game {
     int score() {
         int score = 0;
         int frameIndex = 0;
-        for ( int frame = 0; frame < 10; frame++ ) {
-            if ( rolls[frameIndex] + rolls[frameIndex + 1] == 10 ) {
-                score += 10 + rolls[frameIndex + 2];
+        for ( int frame = 0; frame < NUMBER_OF_FRAMES; frame++ ) {
+            if ( checkIfSpare( frameIndex ) ) {
+                score += SPARE_SCORE + rolls[frameIndex + 2];
                 frameIndex += 2;
             } else {
                 score += rolls[frameIndex] + rolls[frameIndex + 1];
@@ -31,6 +33,10 @@ class Game {
             }
         }
         return score;
+    }
+
+    private boolean checkIfSpare( int frameIndex ) {
+        return rolls[frameIndex] + rolls[frameIndex + 1] == SPARE_SCORE;
     }
 
 }
