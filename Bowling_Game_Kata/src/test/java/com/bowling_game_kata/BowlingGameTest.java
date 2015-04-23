@@ -23,7 +23,16 @@ public class BowlingGameTest {
         for ( int i = 0; i < 20; i++ ) {
             game.roll( 0 );
         }
-        assertThat( game.score(), is( 0 ) );
+        assertThat( game.score(), is( expectedScore ) );
+    }
+
+    @Test
+    public void oneShot_oneKill() throws Exception {
+        Game game = new Game();
+        int expectedScore = 20;
+        for ( int i = 0; i < 20; i++ ) {
+            game.roll( 1 );
+        }
         assertThat( game.score(), is( expectedScore ) );
     }
 }
