@@ -25,16 +25,26 @@ public class BowlingGameTest {
         assertThat( game.score(), is( expectedScore ) );
     }
 
+    @Test
+    public void oneShot_oneKill() throws Exception {
+        int expectedScore = 20;
+        hitNPinsInEachOfNRolls( 20, 1 );
+        assertThat( game.score(), is( expectedScore ) );
+    }
+
+    @Test
+    public void oneSpare_andZeroForRest_expectedScoreIs12() {
+        int expectedScore = 14;
+        game.roll( 5 );
+        game.roll( 5 );
+        game.roll( 2 );
+        hitNPinsInEachOfNRolls( 17, 0 );
+        assertThat( game.score(), is( expectedScore ) );
+    }
+
     private void hitNPinsInEachOfNRolls( int rolls, int hitsPerRoll ) {
         for ( int i = 0; i < rolls; i++ ) {
             game.roll( hitsPerRoll );
         }
-    }
-
-    @Test
-    public void oneShot_oneKill() throws Exception {
-        int expectedScore = 20;
-        hitNPinsInEachOfNRolls( 20, 1);
-        assertThat( game.score(), is( expectedScore ) );
     }
 }
