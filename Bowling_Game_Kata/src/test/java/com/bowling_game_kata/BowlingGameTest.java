@@ -19,9 +19,11 @@ public class BowlingGameTest {
     @Test
     public void testGutterGame() throws Exception {
         Game game = new Game();
+        int expectedScore = 0;
         for ( int i = 0; i < 20; i++ ) {
             game.roll( 0 );
         }
         assertThat( game.score(), is( 0 ) );
+        assertThat( game.score(), is( expectedScore ) );
     }
 }
