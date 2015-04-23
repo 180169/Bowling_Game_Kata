@@ -16,23 +16,25 @@ import static org.hamcrest.MatcherAssert.assertThat;
  */
 public class BowlingGameTest {
 
+    private final Game game = new Game();
+
     @Test
     public void testGutterGame() throws Exception {
-        Game game = new Game();
         int expectedScore = 0;
-        for ( int i = 0; i < 20; i++ ) {
-            game.roll( 0 );
-        }
+        hitNPinsInEachOfNRolls( 20, 0 );
         assertThat( game.score(), is( expectedScore ) );
+    }
+
+    private void hitNPinsInEachOfNRolls( int rolls, int hitsPerRoll ) {
+        for ( int i = 0; i < rolls; i++ ) {
+            game.roll( hitsPerRoll );
+        }
     }
 
     @Test
     public void oneShot_oneKill() throws Exception {
-        Game game = new Game();
         int expectedScore = 20;
-        for ( int i = 0; i < 20; i++ ) {
-            game.roll( 1 );
-        }
+        hitNPinsInEachOfNRolls( 20, 1);
         assertThat( game.score(), is( expectedScore ) );
     }
 }
