@@ -44,11 +44,15 @@ public class BowlingGameTest {
     @Test
     public void oneStrike_andZeroForRest_expectedScoreIs26() {
         int expectedScore = 26;
-        game.roll( 10 );
+        strikeRoll();
         game.roll( 3 );
         game.roll( 5 );
         hitNPinsInEachOfNRolls( 17, 0 );
         assertThat( game.score(), is( expectedScore ) );
+    }
+
+    private void strikeRoll() {
+        game.roll( 10 );
     }
 
     private void spareRoll() {

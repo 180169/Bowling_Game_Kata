@@ -12,7 +12,7 @@ package com.bowling_game_kata;
 class Game {
 
     private static final int NUMBER_OF_FRAMES = 10;
-    private static final int SPARE_SCORE = 10;
+    private static final int MAX_PINS = 10;
     private int rolls[] = new int[21];
     private int currentRoll = 0;
 
@@ -24,22 +24,37 @@ class Game {
         int score = 0;
         int frameIndex = 0;
         for ( int frame = 0; frame < NUMBER_OF_FRAMES; frame++ ) {
-            if ( rolls[frameIndex] == 10 ) {
-                score += 10 + rolls[frameIndex + 1] + rolls[frameIndex + 2];
+            if ( rolls[frameIndex] == MAX_PINS ) {
+                score = strikeBonus( score, frameIndex );
                 frameIndex++;
             } else if ( checkIfSpare( frameIndex ) ) {
-                score += SPARE_SCORE + rolls[frameIndex + 2];
+                score = spareBonus( score, frameIndex );
                 frameIndex += 2;
             } else {
-                score += rolls[frameIndex] + rolls[frameIndex + 1];
+                score = pinsHitedInFrame( score, frameIndex );
                 frameIndex += 2;
             }
         }
         return score;
     }
 
+    private int pinsHitedInFrame( int score, int frameIndex ) {
+        score += rolls[frameIndex] + rolls[frameIndex + 1];
+        return score;
+    }
+
+    private int spareBonus( int score, int frameIndex ) {
+        score += MAX_PINS + rolls[frameIndex + 2];
+        return score;
+    }
+
+    private int strikeBonus( int score, int frameIndex ) {
+        score += MAX_PINS + rolls[frameIndex + 1] + rolls[frameIndex + 2];
+        return score;
+    }
+
     private boolean checkIfSpare( int frameIndex ) {
-        return rolls[frameIndex] + rolls[frameIndex + 1] == SPARE_SCORE;
+        return rolls[frameIndex] + rolls[frameIndex + 1] == MAX_PINS;
     }
 
 }
