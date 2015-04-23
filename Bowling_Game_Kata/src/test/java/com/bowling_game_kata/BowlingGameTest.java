@@ -19,7 +19,7 @@ public class BowlingGameTest {
     private final Game game = new Game();
 
     @Test
-    public void testGutterGame() throws Exception {
+    public void twentyShots_zeroHits() throws Exception {
         int expectedScore = 0;
         hitNPinsInEachOfNRolls( 20, 0 );
         assertThat( game.score(), is( expectedScore ) );
@@ -33,7 +33,7 @@ public class BowlingGameTest {
     }
 
     @Test
-    public void oneSpare_andZeroForRest_expectedScoreIs12() {
+    public void oneSpare_andZeroForRest_expectedScoreIs14() {
         int expectedScore = 14;
         spareRoll();
         game.roll( 2 );
